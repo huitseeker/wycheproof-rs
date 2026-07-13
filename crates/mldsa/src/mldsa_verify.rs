@@ -27,6 +27,7 @@ define_test_flags!(
     InvalidContext,
     InvalidSignature,
     ManySteps,
+    MissingReduction,
     ModifiedSignature,
     SampleNttEdgeCase,
     ValidSignature,
