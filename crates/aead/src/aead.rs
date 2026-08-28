@@ -30,6 +30,7 @@ define_test_set_names!(
     Sm4Ccm => "sm4_ccm",
     Sm4Gcm => "sm4_gcm",
     XChaCha20Poly1305 => "xchacha20_poly1305",
+    AsconAead128 => "ascon_sp800_232_aead128",
 );
 
 define_algorithm_map!(
@@ -59,6 +60,7 @@ define_algorithm_map!(
     "SM4-CCM" => Sm4Ccm,
     "SM4-GCM" => Sm4Gcm,
     "XCHACHA20-POLY1305" => XChaCha20Poly1305,
+    "ASCON-AEAD128" => AsconAead128,
 );
 
 define_test_flags!(
@@ -84,6 +86,11 @@ define_test_flags!(
     SpecialCaseIv,
     WrappedIv,
     ZeroLengthIv,
+    ByteOrder,
+    BytePattern,
+    ModifiedCiphertext,
+    ModifiedInput,
+    RateBoundary,
 );
 
 define_test_group_type_id!(

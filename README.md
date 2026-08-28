@@ -23,12 +23,12 @@ families they need and avoid additive feature-resolution surprises.
 
 | Crate | Contents |
 |---|---|
-| `wycheproof-ng-core` | Shared result types, decoded byte wrappers, errors, and deserialization helpers. |
-| `wycheproof-ng-aead` | AEAD and DAEAD vectors. |
-| `wycheproof-ng-symmetric` | Block cipher, key wrap, MAC, and MAC-with-nonce vectors. |
+| `wycheproof-ng-core` | Shared errors and decoded byte wrappers, with result types and deserialization helpers. |
+| `wycheproof-ng-aead` | AEAD and DAEAD vectors, including C2SP chunked encryption. |
+| `wycheproof-ng-symmetric` | Block cipher and key wrap vectors, plus MAC vectors with or without nonces. |
 | `wycheproof-ng-fpe` | Format-preserving encryption vectors. |
 | `wycheproof-ng-ecdsa` | ECDSA vectors. |
-| `wycheproof-ng-dh` | ECDH, XDH, and EC curve vectors. |
+| `wycheproof-ng-dh` | Elliptic-curve and XDH key-agreement vectors. |
 | `wycheproof-ng-dsa` | DSA vectors. |
 | `wycheproof-ng-eddsa` | Ed25519 and Ed448 vectors. |
 | `wycheproof-ng-bls` | BLS vectors. |
@@ -61,8 +61,8 @@ The vector files are committed to the repository and included in each crate at
 publish time. Builds do not fetch data from the network.
 
 The repository records the pinned upstream source in
-`scripts/wycheproof-source.env`, the crate assignment in
-`scripts/wycheproof-data-manifest.tsv`, and the offline content hashes in
+`scripts/wycheproof-source.env` and the crate assignment in
+`scripts/wycheproof-data-manifest.tsv`. Offline content hashes live in
 `scripts/wycheproof-data-sha256.tsv`.
 
 Run the provenance checks with:
@@ -76,7 +76,7 @@ The networked check compares local committed vectors against the pinned C2SP
 Wycheproof commit. The offline check verifies the committed files against the
 checked-in SHA-256 manifest.
 
-## Minimum Supported Rust Version
+## Minimum supported Rust version
 
 The minimum supported Rust version for the forked crate family is Rust 1.85.0.
 Any future MSRV increase should be accompanied by a minor version bump.
@@ -123,12 +123,9 @@ It runs `cargo publish --dry-run` for each crate in dependency order, using
 temporary local registry patches so workspace dependencies can be verified
 without uploading anything.
 
-crates.io trusted publishing is configured for every crate:
-
-- owner: `huitseeker`;
-- repository: `huitseeker/wycheproof-ng-rs`;
-- workflow: `release.yml`;
-- environment: `crates-io`.
+crates.io trusted publishing uses the `crates-io` environment in the
+`huitseeker/wycheproof-ng-rs` repository. The owner is `huitseeker`, and the
+workflow is `release.yml`.
 
 Subsequent releases use the protected GitHub Actions release workflow.
 
@@ -143,14 +140,14 @@ wycheproof = "0.6"
 use the umbrella crate:
 
 ```toml
-wycheproof-ng = "0.1"
+wycheproof-ng = "0.2"
 ```
 
 For one vector family, depend directly on that family crate:
 
 ```toml
-wycheproof-ng-ecdsa = "0.1"
+wycheproof-ng-ecdsa = "0.2"
 ```
 
 This avoids additive feature resolution. Depending on ECDSA vectors will not
-cause ML-KEM, RSA, or FPE vectors to be compiled.
+compile unrelated vector families.
