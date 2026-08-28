@@ -15,8 +15,11 @@ aria_gcm_test.json	crates/aead/src/data
 ascon128_test.json	crates/aead/src/data
 ascon128a_test.json	crates/aead/src/data
 ascon80pq_test.json	crates/aead/src/data
+ascon_sp800_232_aead128_test.json	crates/aead/src/data
 camellia_ccm_test.json	crates/aead/src/data
 chacha20_poly1305_test.json	crates/aead/src/data
+c2sp_chunked_encryption_aes_128_gcm_test.json	crates/aead/src/data
+c2sp_chunked_encryption_aes_256_gcm_test.json	crates/aead/src/data
 morus1280_test.json	crates/aead/src/data
 morus640_test.json	crates/aead/src/data
 seed_ccm_test.json	crates/aead/src/data
