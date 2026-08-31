@@ -71,7 +71,7 @@ jobs:
 
   authorize-release:
     name: authorize release
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' }}
     needs: release-dry-run
     runs-on: ubuntu-24.04
     environment: release
