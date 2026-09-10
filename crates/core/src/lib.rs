@@ -74,6 +74,7 @@ macro_rules! define_test_group_type_id {
     ( $( $json_str:expr => $enum_elem:ident ),* $(,)?) => {
         #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, serde_derive::Deserialize)]
         #[allow(non_camel_case_types)]
+        #[non_exhaustive]
         pub enum TestGroupTypeId {
             $(
                 #[serde(rename = $json_str)]
@@ -88,6 +89,7 @@ macro_rules! define_algorithm_map {
     ( $( $json_str:expr => $enum_elem:ident ),* $(,)?) => {
         #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, serde_derive::Deserialize)]
         #[allow(non_camel_case_types)]
+        #[non_exhaustive]
         pub enum Algorithm {
             $(
                 #[serde(rename = $json_str)]
@@ -102,6 +104,7 @@ macro_rules! define_test_set_names {
     ( $( $enum_name:ident => $test_name:expr ),* $(,)?) => {
         #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, serde_derive::Deserialize)]
         #[allow(non_camel_case_types)]
+        #[non_exhaustive]
         pub enum TestName {
             $(
                 $enum_name,
@@ -186,6 +189,7 @@ pub struct TestFlagInfo {
 macro_rules! define_test_flags {
     ( $( $($json_name:literal =>)? $flag:ident ),* $(,)?) => {
         #[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, serde_derive::Deserialize)]
+        #[non_exhaustive]
         pub enum TestFlag {
             $(
                 $(#[serde(rename = $json_name)])?
