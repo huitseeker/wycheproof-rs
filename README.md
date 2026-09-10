@@ -140,13 +140,13 @@ wycheproof = "0.6"
 use the umbrella crate:
 
 ```toml
-wycheproof-ng = "0.2"
+wycheproof-ng = "0.3"
 ```
 
 For one vector family, depend directly on that family crate:
 
 ```toml
-wycheproof-ng-ecdsa = "0.2"
+wycheproof-ng-ecdsa = "0.3"
 ```
 
 This avoids additive feature resolution. Depending on ECDSA vectors will not
