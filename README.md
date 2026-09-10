@@ -131,8 +131,7 @@ Subsequent releases use the protected GitHub Actions release workflow. Complete
 these steps in order:
 
 1. Merge the version update into `main`.
-2. Run the `release dry run` workflow from `main`, approve the `release`
-   environment, and wait for the workflow to pass.
+2. Run the `release dry run` workflow from `main` and wait for it to pass.
 3. Create and publish a GitHub release whose tag uses the `vX.Y.Z` form. Point
    the tag at the release commit on `main`. Publishing the GitHub release starts
    `release.yml` and requests approval for the `crates-io` environment.

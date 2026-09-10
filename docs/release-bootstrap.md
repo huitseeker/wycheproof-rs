@@ -104,7 +104,8 @@ gh workflow run "release dry run" \
   --ref main
 ```
 
-Approve the `release` environment gate and wait for the workflow to pass.
+Wait for the workflow to pass. It only verifies and uploads package artifacts,
+so it does not require environment approval.
 
 For the first trusted-publishing proof, bump every crate to the next patch
 version in a pull request, tag that commit after it lands, create a GitHub
