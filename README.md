@@ -127,7 +127,18 @@ crates.io trusted publishing uses the `crates-io` environment in the
 `huitseeker/wycheproof-ng-rs` repository. The owner is `huitseeker`, and the
 workflow is `release.yml`.
 
-Subsequent releases use the protected GitHub Actions release workflow.
+Subsequent releases use the protected GitHub Actions release workflow. Complete
+these steps in order:
+
+1. Merge the version update into `main`.
+2. Run the `release dry run` workflow from `main`, approve the `release`
+   environment, and wait for the workflow to pass.
+3. Create and publish a GitHub release whose tag uses the `vX.Y.Z` form. Point
+   the tag at the release commit on `main`. Publishing the GitHub release starts
+   `release.yml` and requests approval for the `crates-io` environment.
+
+The manual `release.yml` dispatch is only for retrying a release. Its `version`
+input must name an existing `vX.Y.Z` tag.
 
 ## Migration
 
